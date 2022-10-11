@@ -20,7 +20,7 @@ defmodule Homework.MixProject do
   def application do
     [
       mod: {Homework.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :bamboo]
     ]
   end
 
@@ -33,19 +33,23 @@ defmodule Homework.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 3.0"},
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
       {:ecto_sql, "~> 3.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:phoenix, "~> 1.5.4"},
+      {:phoenix, "~> 1.6.14"},
       {:phoenix_ecto, "~> 4.1"},
       {:phoenix_live_dashboard, "~> 0.2"},
       {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 2.1.0"},
       {:postgrex, ">= 0.0.0"},
       {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"}
+      {:telemetry_poller, "~> 0.4"},
+      {:phoenix_html, "~> 3.2"},
+      {:mime, "~> 2.0", override: true},
+      {:bamboo, "~> 2.2.0"}
     ]
   end
 
