@@ -2,13 +2,7 @@ defmodule HomeworkWeb.UserRegistrationController do
   use HomeworkWeb, :controller
 
   alias Homework.Accounts
-  alias Homework.Accounts.User
   alias HomeworkWeb.UserAuth
-
-  def new(conn, _params) do
-    changeset = Accounts.change_user_registration(%User{})
-    render(conn, "new.html", changeset: changeset)
-  end
 
   def create(conn, %{"user" => user_params}) do
     case Accounts.register_user(user_params) do
@@ -24,6 +18,7 @@ defmodule HomeworkWeb.UserRegistrationController do
         |> UserAuth.log_in_user(user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        # fix this later
         render(conn, "new.html", changeset: changeset)
     end
   end

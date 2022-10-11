@@ -3,10 +3,6 @@ defmodule HomeworkWeb.UserConfirmationController do
 
   alias Homework.Accounts
 
-  def new(conn, _params) do
-    render(conn, "new.html")
-  end
-
   def create(conn, %{"user" => %{"email" => email}}) do
     if user = Accounts.get_user_by_email(email) do
       Accounts.deliver_user_confirmation_instructions(
@@ -24,9 +20,6 @@ defmodule HomeworkWeb.UserConfirmationController do
     |> redirect(to: "/")
   end
 
-  def edit(conn, %{"token" => token}) do
-    render(conn, "edit.html", token: token)
-  end
 
   # Do not log in the user after confirmation to avoid a
   # leaked token giving the user access to the account.
