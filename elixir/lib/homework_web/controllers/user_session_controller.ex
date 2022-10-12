@@ -12,7 +12,7 @@ defmodule HomeworkWeb.UserSessionController do
     else
       # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
       # fix this later
-      render(conn, "new.html", error_message: "Invalid email or password")
+      send_resp(conn, 200, "Invalid email or password")
     end
   end
 
@@ -20,5 +20,11 @@ defmodule HomeworkWeb.UserSessionController do
     conn
     |> put_flash(:info, "Logged out successfully.")
     |> UserAuth.log_out_user()
+  end
+
+  def get(conn, _params) do
+    conn = UserAuth.fetch_current_user(conn, [])
+    conn
+    |> send_resp(200, Poison.encode!(conn.assigns.current_user))
   end
 end

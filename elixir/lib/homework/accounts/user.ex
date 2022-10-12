@@ -2,6 +2,7 @@ defmodule Homework.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Poison.Encoder, only: [:email, :confirmed_at]}
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "users" do
     field :email, :string

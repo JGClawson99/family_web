@@ -7,10 +7,10 @@ defmodule HomeworkWeb.UserRegistrationController do
   def create(conn, %{"user" => user_params}) do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
-        {:ok, _} =
+        # confirm account button will be on a frontend url, it will then send the post :update request the backend
           Accounts.deliver_user_confirmation_instructions(
             user,
-            &Routes.user_confirmation_url(conn, :edit, &1)
+            "http://localhost:3000/users/confirm/"<>"some_token"
           )
 
         conn
@@ -19,7 +19,7 @@ defmodule HomeworkWeb.UserRegistrationController do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         # fix this later
-        render(conn, "new.html", changeset: changeset)
+        send_resp(conn, 500, "account already exists")
     end
   end
 end

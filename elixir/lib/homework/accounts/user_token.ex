@@ -17,7 +17,7 @@ defmodule Homework.Accounts.UserToken do
     field :token, :binary
     field :context, :string
     field :sent_to, :string
-    belongs_to :user, Homework.Accounts.User
+    belongs_to :user, Homework.Accounts.User, type: :binary_id, foreign_key: :user_id
 
     timestamps(updated_at: false)
   end
