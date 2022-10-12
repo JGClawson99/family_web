@@ -10,6 +10,13 @@ use Mix.Config
 config :homework,
   ecto_repos: [Homework.Repo]
 
+config :cors_plug,
+  origin: ["http://localhost:3000"],
+  max_age: 86400,
+  methods: ["GET", "POST", "DELETE"],
+  headers: ["Authorization", "Content-Type", "Accept", "Origin", "User-Agent", "DNT","Cache-Control", "X-Mx-ReqToken", "Keep-Alive", "X-Requested-With", "If-Modified-Since", "Bearer", "X-File-Name", "X-Csrf-Token"],
+  expose: ["*"]
+
 # Configures the endpoint
 config :homework, HomeworkWeb.Endpoint,
   url: [host: "localhost"],

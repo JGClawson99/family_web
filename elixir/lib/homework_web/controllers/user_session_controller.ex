@@ -23,7 +23,6 @@ defmodule HomeworkWeb.UserSessionController do
   end
 
   def get(conn, _params) do
-    conn = UserAuth.fetch_current_user(conn, [])
     conn
     |> send_resp(200, Poison.encode!(conn.assigns.current_user))
   end

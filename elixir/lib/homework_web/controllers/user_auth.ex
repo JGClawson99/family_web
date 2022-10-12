@@ -82,7 +82,8 @@ defmodule HomeworkWeb.UserAuth do
     conn
     |> renew_session()
     |> delete_resp_cookie(@remember_me_cookie)
-    |> redirect(to: "/")
+    |> send_resp(200, "logged out")
+    # |> redirect(to: "/")
   end
 
   @doc """
@@ -115,7 +116,8 @@ defmodule HomeworkWeb.UserAuth do
   def redirect_if_user_is_authenticated(conn, _opts) do
     if conn.assigns[:current_user] do
       conn
-      |> redirect(to: signed_in_path(conn))
+      # |> redirect(to: signed_in_path(conn))
+      |> send_resp(200, "user authenticated")
       |> halt()
     else
       conn
@@ -135,7 +137,8 @@ defmodule HomeworkWeb.UserAuth do
       conn
       |> put_flash(:error, "You must log in to access this page.")
       |> maybe_store_return_to()
-      |> redirect(to: Routes.user_session_path(conn, :new))
+      # |> redirect(to: Routes.user_session_path(conn, :new))
+      |> send_resp(200, "not authenticated")
       |> halt()
     end
   end

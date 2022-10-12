@@ -13,6 +13,9 @@ defmodule HomeworkWeb.Router do
     plug(:accepts, ["json"])
     plug :fetch_session
     plug :fetch_flash
+    # plug :protect_from_forgery
+    # plug :put_secure_browser_headers
+    plug :fetch_current_user
   end
 
   scope "/" do
@@ -34,19 +37,19 @@ defmodule HomeworkWeb.Router do
     post "/users/log_in", UserSessionController, :create
     post "/users/reset_password", UserResetPasswordController, :create
     put "/users/reset_password/:token", UserResetPasswordController, :update
-    get "/users/get_current_user", UserSessionController, :get
   end
 
   scope "/", HomeworkWeb do
     pipe_through [:browser, :require_authenticated_user]
 
     put "/users/settings", UserSettingsController, :update
+    get "/users/get_current_user", UserSessionController, :get
+    delete "/users/log_out", UserSessionController, :delete
   end
 
   scope "/", HomeworkWeb do
     pipe_through [:browser]
 
-    delete "/users/log_out", UserSessionController, :delete
     post "/users/confirm", UserConfirmationController, :create
     post "/users/confirm/:token", UserConfirmationController, :update
   end

@@ -49,7 +49,8 @@ defmodule Homework.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:phoenix_html, "~> 3.2"},
       {:mime, "~> 2.0", override: true},
-      {:bamboo, "~> 2.2.0"}
+      {:bamboo, "~> 2.2.0"},
+      {:cors_plug, "~> 3.0"},
     ]
   end
 
