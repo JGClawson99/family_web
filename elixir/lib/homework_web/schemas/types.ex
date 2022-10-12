@@ -5,4 +5,5 @@ defmodule HomeworkWeb.Schemas.Types do
   use Absinthe.Schema.Notation
 
   import_types(Absinthe.Type.Custom)
+  import_types(HomeworkWeb.Schemas.UsersSchema)
 end

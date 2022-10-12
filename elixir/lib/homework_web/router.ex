@@ -16,7 +16,7 @@ defmodule HomeworkWeb.Router do
 
     forward("/graphiql", Absinthe.Plug.GraphiQL,
       schema: HomeworkWeb.Schema,
-      interface: :simple,
+      interface: :playground,
       context: %{pubsub: HomeworkWeb.Endpoint}
     )
   end
