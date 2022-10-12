@@ -27,6 +27,10 @@ hackney_opts: [
   connect_timeout: :timer.minutes(1)
 ]
 
+config :ex_aws,
+  access_key_id: System.get_env("AWS_ACCESS_KEY"),
+  secret_access_key: System.get_env("AWS_SECRET_ACCESS_KEY")
+
 
 # Configures Elixir's Logger
 config :logger, :console,

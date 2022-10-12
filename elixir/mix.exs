@@ -49,7 +49,11 @@ defmodule Homework.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:phoenix_html, "~> 3.2"},
       {:mime, "~> 2.0", override: true},
-      {:bamboo, "~> 2.2.0"}
+      {:bamboo, "~> 2.2.0"},
+      {:ex_aws, "~> 2.1"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:hackney, "~> 1.9"},
+      {:sweet_xml, "~> 0.6"},
     ]
   end
 
