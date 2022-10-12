@@ -1,27 +1,11 @@
 defmodule Homework.Accounts.UserNotifier do
-  import Bamboo.Email
-
-  alias Homework.Mailer
-
-  # Delivers the email using the application mailer.
-  defp deliver(recipient, subject, body) do
-    email =
-      new_email()
-      |> to(recipient)
-      |> from({"Homework", "JGClawson99@gmail.com"})
-      |> subject(subject)
-      |> text_body(body)
-
-    with {:ok, _metadata} <- Mailer.deliver(email) do
-      {:ok, email}
-    end
-  end
+  alias Homework.Email
 
   @doc """
   Deliver instructions to confirm account.
   """
   def deliver_confirmation_instructions(user, url) do
-    deliver(user.email, "Confirmation instructions", """
+    Email.create(user.email, "Confirmation instructions", """
 
     ==============================
 
@@ -35,13 +19,14 @@ defmodule Homework.Accounts.UserNotifier do
 
     ==============================
     """)
+    |> Email.send()
   end
 
   @doc """
   Deliver instructions to reset a user password.
   """
   def deliver_reset_password_instructions(user, url) do
-    deliver(user.email, "Reset password instructions", """
+    Email.create(user.email, "Reset password instructions", """
 
     ==============================
 
@@ -55,13 +40,14 @@ defmodule Homework.Accounts.UserNotifier do
 
     ==============================
     """)
+    |> Email.send()
   end
 
   @doc """
   Deliver instructions to update a user email.
   """
   def deliver_update_email_instructions(user, url) do
-    deliver(user.email, "Update email instructions", """
+    Email.create(user.email, "Update email instructions", """
 
     ==============================
 
@@ -75,5 +61,6 @@ defmodule Homework.Accounts.UserNotifier do
 
     ==============================
     """)
+    |> Email.send()
   end
 end

@@ -18,6 +18,17 @@ config :homework, HomeworkWeb.Endpoint,
   pubsub_server: Homework.PubSub,
   live_view: [signing_salt: "4Ka1Trkx"]
 
+# Configures bamboo Mailer
+# Api key here temporarily
+config :homework, Homework.Email,
+adapter: Bamboo.SendGridAdapter,
+api_key: "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",
+hackney_opts: [
+  recv_timeout: :timer.minutes(1),
+  connect_timeout: :timer.minutes(1)
+]
+
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
