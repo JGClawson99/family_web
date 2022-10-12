@@ -19,10 +19,9 @@ config :homework, HomeworkWeb.Endpoint,
   live_view: [signing_salt: "4Ka1Trkx"]
 
 # Configures bamboo Mailer
-# Api key here temporarily
 config :homework, Homework.Email,
 adapter: Bamboo.SendGridAdapter,
-api_key: "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",
+api_key: System.get_env("SENDGRID_API_KEY"),
 hackney_opts: [
   recv_timeout: :timer.minutes(1),
   connect_timeout: :timer.minutes(1)
