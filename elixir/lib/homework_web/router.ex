@@ -42,6 +42,8 @@ defmodule HomeworkWeb.Router do
   scope "/", HomeworkWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    post "/uploadImage", ImageController, :upload
+    get "/getImage", ImageController, :get
     put "/users/settings", UserSettingsController, :update
     get "/users/get_current_user", UserSessionController, :get
     delete "/users/log_out", UserSessionController, :delete
